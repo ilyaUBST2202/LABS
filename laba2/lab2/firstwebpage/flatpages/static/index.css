@@ -1,0 +1,35 @@
+/* flatpages/static/index.css */
+body {
+    background: #1abc9c;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #333;
+}
+table {
+    border-collapse: collapse; /* Для красивых границ таблицы */
+    width: 100%; /* Задание: Сделать ширину таблицы на 100% экрана */
+}
+/* Добавляем границы для таблицы, её заголовков и ячеек */
+table, th, td {
+    border: 1px solid black;
+}
+p {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+h1 {
+    font-family: serif; /* Задание: Установить для заголовка первого уровня шрифт с засечками */
+}
+h4 {
+    font-size: 18px; /* Задание: Изменить размер шрифта для подзаголовков четвертого уровня */
+    margin-bottom: 0; /* Сохраняем отступ снизу */
+}
+ul, ol {
+    margin: 0;
+}
+table tr td, table th { /* Добавляем padding для th тоже */
+    padding: 5px;
+}
+img {
+  height: 30px; /* Задание: Добавить картинку и сделать ее высотой 30px */
+  width: auto;
+}
