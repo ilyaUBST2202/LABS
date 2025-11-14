@@ -1,0 +1,101 @@
+    {# lab3/blog/articles/templates/archive.html #}
+    {% load static %} {# Это обязательная строка для использования {% static %} тега #}
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Архив статей</title>
+        <style>
+            /* Простые стили для лучшей визуализации */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 30px;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .header img {
+                max-width: 150px; /* Установим размер для логотипа */
+                height: auto;
+                margin-bottom: 10px;
+            }
+            .header h1 {
+                color: #0056b3;
+                margin-top: 10px;
+            }
+            .archive {
+                max-width: 800px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .one-post {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+            .one-post:last-child {
+                border-bottom: none; /* Убрать границу у последней статьи */
+                margin-bottom: 0;
+            }
+            .post-title {
+                color: #333;
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: 1.8em;
+            }
+            .article-info {
+                display: flex; /* Для размещения автора и даты на одной строке */
+                justify-content: space-between; /* Разносим элементы по краям */
+                font-size: 0.9em;
+                color: #777;
+                margin-bottom: 15px;
+            }
+            .article-author strong { font-weight: bold; color: #555; }
+            .article-text {
+                line-height: 1.6;
+                color: #555;
+            }
+            .no-posts {
+                text-align: center;
+                color: #888;
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            {# Чтобы изображение работало, нужно настроить статические файлы. #}
+            {# Ссылка на картинку. #}
+            <img src="{% static 'img/logo.png' %}" alt="Логотип проекта">
+            <h1>Наш Блог: Архив Статей</h1>
+        </div>
+
+        <div class="archive">
+            {% if posts %} {# Проверяем, есть ли статьи для отображения #}
+                {% for post in posts %}
+                <div class="one-post">
+                    <h2 class="post-title">{{ post.title }}</h2>
+                    <div class="article-info">
+                        <div class="article-author">Автор: <strong>{{ post.author.username }}</strong></div>
+                        <div class="article-created-date">Опубликовано: {{ post.created_date|date:"d M Y" }}</div>
+                    </div>
+                    <p class="article-text">{{ post.get_excerpt }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-posts">Пока нет опубликованных статей.</p>
+            {% endif %}
+        </div>
+    </body>
+    </html>
